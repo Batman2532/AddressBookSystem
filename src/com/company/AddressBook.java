@@ -12,7 +12,8 @@ public class AddressBook {
       while(flag) {
           System.out.println("Enter 1 to add contact: ");
           System.out.println("Enter 2 to edit contact: ");
-          System.out.println("Enter 3 to add contact: ");
+          System.out.println("Enter 3 to delete contact: ");
+          System.out.println("Enter 4 to exit");
           int choice = sc.nextInt();
           switch (choice) {
               case 1:
@@ -22,6 +23,9 @@ public class AddressBook {
                   editContact();
                   break;
               case 3:
+                  deleteContact();
+                  break;
+              case 4:
                   flag = !flag;
                   break;
               default:
@@ -29,6 +33,24 @@ public class AddressBook {
                   break;
           }
       }
+    }
+
+    private static void deleteContact() {
+        System.out.println("enter first name to delete contacts");
+        String firstName = sc.next();
+        int flag = 0;
+        for (Contacts contacts : person) {
+            if (contacts.getFirstName().equals(firstName)) {
+                person.remove(contacts);
+                flag = 1;
+                break;
+            }
+        }
+        if(flag==1){
+            System.out.println("Contacts deleted");
+        }else{
+            System.out.println("contacts not found");
+        }
     }
 
     private static void editContact() {
