@@ -1,46 +1,50 @@
 package com.company;
-
-
 import java.util.*;
 
 public class AddressBook {
-    public static String firstName;
-    public static String lastName;
-    public static String address;
-    public static String city;
-    public static String state;
-    public static int zipCode;
-    public static int phoneNumber;
-    public static String email;
 
-    public AddressBook(String firstName, String lastName, String address,String city,String state,int zipCode,int phoneNumber,String email){
-        this.firstName = firstName;
-        this.lastName =lastName;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+    private static ArrayList<Contacts> person = new ArrayList<Contacts>();
+    static Scanner sc = new Scanner(System.in);
+
+    public static void addPerson(){
+        String firstName,lastName,address,city,state,email;
+        int zipCode,phoneNumber;
+        System.out.println("Enter First Name");
+        firstName = sc.next();
+        System.out.println("Enter Last Name");
+        lastName = sc.next();
+        System.out.println("Enter Address");
+        address = sc.next();
+        System.out.println("Enter City");
+        city = sc.next();
+        System.out.println("Enter State");
+        state = sc.next();
+        System.out.println("Enter Zipcode");
+       zipCode = sc.nextInt();
+        System.out.println("Enter Phone Number");
+       phoneNumber = sc.nextInt();
+        System.out.println("Enter Email");
+       email = sc.next();
+        Contacts ab = new Contacts(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
+        System.out.println(ab);
+        person.add(ab);
     }
 
     public static void main(String[] args){
       System.out.println("Welcome to Address Book System");
-      ArrayList<Contacts> contacts = new ArrayList<>();
-      Contacts ab = new Contacts(firstName, lastName, address, city, state, zipCode,phoneNumber,email);
         System.out.println("Enter 1 to add contact: ");
-        Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
         switch(choice) {
             case 1:
-                ab.add();
-                ab.toString();
-                contacts.add(ab);
-                System.out.println(contacts.get(0));
+                addPerson();
                 break;
             default:
                 System.out.println("Enter valid number");
                 break;
         }
     }
+
 }
+//    String firstName, String lastName, String address, String city, String state, int zipCode, int phoneNumber, String email
+//firstName, lastName, address, city, state, zipCode,phoneNumber,email
+//String fName, String lName, String add, String cty, String st, int zip, int ph, String mail
