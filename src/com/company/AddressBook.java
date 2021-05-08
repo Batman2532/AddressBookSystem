@@ -3,36 +3,58 @@ import java.util.*;
 
 public class AddressBook {
 
-    private static ArrayList<Contacts> person = new ArrayList<Contacts>();
+    public static ArrayList<Contacts> person = new ArrayList<Contacts>();
     static Scanner sc = new Scanner(System.in);
+    public static Map<String, ArrayList<Contacts>> addressBookListMap = new HashMap<String, ArrayList<Contacts>>();
 
     public static void main(String[] args){
-      System.out.println("Welcome to Address Book System");
-      boolean flag = true;
-      while(flag) {
-          System.out.println("Enter 1 to add contact: ");
-          System.out.println("Enter 2 to edit contact: ");
-          System.out.println("Enter 3 to delete contact: ");
-          System.out.println("Enter 4 to exit");
-          int choice = sc.nextInt();
-          switch (choice) {
-              case 1:
-                  addContact();
-                  break;
-              case 2:
-                  editContact();
-                  break;
-              case 3:
-                  deleteContact();
-                  break;
-              case 4:
-                  flag = !flag;
-                  break;
-              default:
-                  System.out.println("Enter valid number");
-                  break;
-          }
-      }
+        System.out.println("Welcome to Address Book System");
+        boolean flag = true;
+        while(flag) {
+            System.out.println("1: Add new address book");
+            System.out.println("2: exit");
+            int option=sc.nextInt();
+            switch (option){
+                case 1:
+                System.out.println("Enter the name of the address book");
+                String addressBookName = sc.next();
+                if(addressBookListMap.containsKey(addressBookName)){
+                    System.out.println("this address book already exists ");
+                }else{
+                    addressBookListMap.put(addressBookName,person);
+                    addAddressBook();
+                }
+            }
+        }
+
+    }
+
+    private static void addAddressBook() {
+        boolean flag = true;
+        while(flag) {
+            System.out.println("Enter 1 to add contact: ");
+            System.out.println("Enter 2 to edit contact: ");
+            System.out.println("Enter 3 to delete contact: ");
+            System.out.println("Enter 4 to exit");
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    addContact();
+                    break;
+                case 2:
+                    editContact();
+                    break;
+                case 3:
+                    deleteContact();
+                    break;
+                case 4:
+                    flag = !flag;
+                    break;
+                default:
+                    System.out.println("Enter valid number");
+                    break;
+            }
+        }
     }
 
     private static void deleteContact() {
